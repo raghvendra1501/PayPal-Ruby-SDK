@@ -335,6 +335,13 @@ module PayPal::SDK
           success?
         end
 
+        def list_cards()
+          path = "/v1/vault/credit-cards"
+          response = api.get(path, self.to_hash, http_header)
+          self.merge!(response)
+          success?
+        end
+
         class << self
           def find(resource_id)
             raise ArgumentError.new("id required") if resource_id.to_s.strip.empty?
